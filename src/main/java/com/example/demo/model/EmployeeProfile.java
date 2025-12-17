@@ -109,17 +109,11 @@ public void setCreatedAt(LocalDateTime createdAt) {
     this.createdAt = createdAt;
 }
 }
+model
 EmployeeProfile
-service
-create
-update(Long id)
-deactivate(Long id)
-getById(Long id)
-getByTeam(string teamName)
-getAll()
-
-controller
-POST-create employee
-PUT/{id}-update employee
-GET/{id}-get employee
-GET/team/{teamName}-list employees by team
+fields:id(long,Pk),employeedId(String),fullName(String),email(String,unique),teamName(String),role(String),active(Boolean),createdAt(LocalDateTime)
+Rules:
+employeeId and email must be unique
+active defaults to true
+must belong to a valid team fullName
+relationship:Many-to-Many with EmployeeProfile(field :colleagues).
