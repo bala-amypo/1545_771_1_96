@@ -110,16 +110,3 @@ public void setCreatedAt(LocalDateTime createdAt) {
 }
 }
 
-service
-create
-update(Long id)
-deactivate(Long id)
-getById(Long id)
-getByTeam(string teamName)
-getAll()
-
-controller
-POST
-PUT/{id}
-GET/{id}
-GET/team/{teamName}
