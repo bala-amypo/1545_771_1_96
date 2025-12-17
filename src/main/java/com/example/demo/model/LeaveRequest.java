@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-
+@Entity
 import java.time.LocalDateTime;
 
 import jakarta.persistence.GeneratedValue;
