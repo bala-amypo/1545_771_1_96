@@ -1,13 +1,14 @@
 package com.example.demo.model;
 
-@Entity
+
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-
+@Entity
 public class LeaveRequest {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
