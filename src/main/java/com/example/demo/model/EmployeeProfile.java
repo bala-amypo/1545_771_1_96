@@ -109,4 +109,17 @@ public void setCreatedAt(LocalDateTime createdAt) {
     this.createdAt = createdAt;
 }
 }
+EmployeeProfile
+service
+create
+update(Long id)
+deactivate(Long id)
+getById(Long id)
+getByTeam(string teamName)
+getAll()
 
+controller
+POST-create employee
+PUT/{id}-update employee
+GET/{id}-get employee
+GET/team/{teamName}-list employees by team
