@@ -1,32 +1,48 @@
 package com.example.demo.model;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
-
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 @Entity
+@Table(name = "employee_profiles")
 public class EmployeeProfile {
+
     @Id
-      @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-   @Column(unique = true)
-    private String employeedId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "employee_id", nullable = false, unique = true)
+    private String employeeId;
+    @Column(name = "full_name", nullable = false)
     private String fullName;
-   
-   @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
+    @Column(name = "team_name", nullable = false)
     private String teamName;
+    @Column(nullable = false)
     private String role;
-    private Boolean active=true;
+    @Column(nullable = false)
+    private Boolean active = true;
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+    @ManyToMany
+    @JoinTable(
+        name = "employee_colleagues",
+        joinColumns = @JoinColumn(name = "employee_profile_id"),
+        inverseJoinColumns = @JoinColumn(name = "colleague_profile_id")
+    )
+    private Set<EmployeeProfile> colleagues = new HashSet<>();
 
+    private String employeedId;
 
-
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        if (this.active == null) {
+            this.active = true;
+        }
+    }
 public EmployeeProfile()
 {
 
@@ -109,11 +125,4 @@ public void setCreatedAt(LocalDateTime createdAt) {
     this.createdAt = createdAt;
 }
 }
-model
-EmployeeProfile
-fields:id(long,Pk),employeedId(String),fullName(String),email(String,unique),teamName(String),role(String),active(Boolean),createdAt(LocalDateTime)
-Rules:
-employeeId and email must be unique
-active defaults to true
-must belong to a valid team fullName
-relationship:Many-to-Many with EmployeeProfile(field :colleagues).
+
