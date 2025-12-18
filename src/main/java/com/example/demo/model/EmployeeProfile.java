@@ -1,128 +1,139 @@
-package com.example.demo.model;
 
+package com.example.demo.model;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
-
 @Entity
-@Table(name = "employee_profiles")
+@Table(
+    name = "employee_profile",
+    uniqueConstraints = {
+        @UniqueConstraint(columnNames = "employeeId"),
+        @UniqueConstraint(columnNames = "email")
+    }
+)
 public class EmployeeProfile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "employee_id", nullable = false, unique = true)
+
+    @Column(nullable = false)
     private String employeeId;
-    @Column(name = "full_name", nullable = false)
+
+    @Column(nullable = false)
     private String fullName;
-    @Column(nullable = false, unique = true)
+
+    @Column(nullable = false)
     private String email;
-    @Column(name = "team_name", nullable = false)
+
+    @Column(nullable = false)
     private String teamName;
+
     @Column(nullable = false)
     private String role;
+
     @Column(nullable = false)
     private Boolean active = true;
-    @Column(name = "created_at", nullable = false, updatable = false)
+
+    @Column(nullable = false)
     private LocalDateTime createdAt;
+
     @ManyToMany
     @JoinTable(
         name = "employee_colleagues",
-        joinColumns = @JoinColumn(name = "employee_profile_id"),
-        inverseJoinColumns = @JoinColumn(name = "colleague_profile_id")
+        joinColumns = @JoinColumn(name = "employee_id"),
+        inverseJoinColumns = @JoinColumn(name = "colleague_id")
     )
     private Set<EmployeeProfile> colleagues = new HashSet<>();
 
-    private String employeedId;
-
     @PrePersist
-    protected void onCreate() {
+    public void onCreate() {
         this.createdAt = LocalDateTime.now();
         if (this.active == null) {
             this.active = true;
         }
     }
-public EmployeeProfile()
-{
 
-}
+   public  EmployeeProfile() {
+   
+   }
 
-public EmployeeProfile( String employeedId, String fullName, String email, String teamName, String role,
-        Boolean active, LocalDateTime createdAt)
-         {
-  
-    this.employeedId = employeedId;
+   public EmployeeProfile(String employeeId, String fullName, String email, String teamName, String role, Boolean active,
+        LocalDateTime createdAt) {
+    this.employeeId = employeeId;
     this.fullName = fullName;
     this.email = email;
     this.teamName = teamName;
     this.role = role;
     this.active = active;
     this.createdAt = createdAt;
-}
+   }
 
-public long getId() {
+   public Long getId() {
     return id;
-}
+   }
 
-public void setId(long id) {
+   public void setId(Long id) {
     this.id = id;
-}
+   }
 
-public String getEmployeedId() {
-    return employeedId;
-}
+   public String getEmployeeId() {
+    return employeeId;
+   }
 
-public void setEmployeedId(String employeedId) {
-    this.employeedId = employeedId;
-}
+   public void setEmployeeId(String employeeId) {
+    this.employeeId = employeeId;
+   }
 
-public String getFullName() {
+   public String getFullName() {
     return fullName;
-}
+   }
 
-public void setFullName(String fullName) {
+   public void setFullName(String fullName) {
     this.fullName = fullName;
-}
+   }
 
-public String getEmail() {
+   public String getEmail() {
     return email;
-}
+   }
 
-public void setEmail(String email) {
+   public void setEmail(String email) {
     this.email = email;
-}
+   }
 
-public String getTeamName() {
+   public String getTeamName() {
     return teamName;
-}
+   }
 
-public void setTeamName(String teamName) {
+   public void setTeamName(String teamName) {
     this.teamName = teamName;
-}
+   }
 
-public String getRole() {
+   public String getRole() {
     return role;
-}
+   }
 
-public void setRole(String role) {
+   public void setRole(String role) {
     this.role = role;
-}
+   }
 
-public Boolean getActive() {
+   public Boolean getActive() {
     return active;
-}
+   }
 
-public void setActive(Boolean active) {
+   public void setActive(Boolean active) {
     this.active = active;
-}
+   }
 
-public LocalDateTime getCreatedAt() {
+   public LocalDateTime getCreatedAt() {
     return createdAt;
-}
+   }
 
-public void setCreatedAt(LocalDateTime createdAt) {
+   public void setCreatedAt(LocalDateTime createdAt) {
     this.createdAt = createdAt;
-}
+   } 
+   
+      
 }
 
