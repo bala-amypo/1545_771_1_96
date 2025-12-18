@@ -1,5 +1,5 @@
 
-package com.example.demo.model;
+package com.example.demo.entity;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
