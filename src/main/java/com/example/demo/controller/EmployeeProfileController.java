@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.EmployeeProfile;
+import com.example.demo.model.EmployeeProfile;
 import com.example.demo.service.EmployeeProfileService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
