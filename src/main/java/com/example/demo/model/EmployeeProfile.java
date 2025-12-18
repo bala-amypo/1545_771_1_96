@@ -1,5 +1,4 @@
-
-import com.example.demo.model.EmployeeProfile;
+package com.example.demo.model;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
