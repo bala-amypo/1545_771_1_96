@@ -1,15 +1,13 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.EmployeeProfile;
+import com.example.demo.dto.EmployeeProfileDto;
 import com.example.demo.service.EmployeeProfileService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/employees")
-@Tag(name = "Employee Profile API")
 public class EmployeeProfileController {
 
     private final EmployeeProfileService service;
@@ -19,27 +17,35 @@ public class EmployeeProfileController {
     }
 
     @PostMapping
-    public EmployeeProfile createEmployee(@RequestBody EmployeeProfile employeeProfile) {
-        return service.create(employeeProfile);
+    public EmployeeProfileDto create(@RequestBody EmployeeProfileDto dto) {
+        return service.create(dto);
     }
 
-   
     @PutMapping("/{id}")
-    public EmployeeProfile updateEmployee(
+    public EmployeeProfileDto update(
             @PathVariable Long id,
-            @RequestBody EmployeeProfile employeeProfile) {
-        return service.update(id, employeeProfile);
+            @RequestBody EmployeeProfileDto dto
+    ) {
+        return service.update(id, dto);
     }
 
-   
+    @PutMapping("/{id}/deactivate")
+    public void deactivate(@PathVariable Long id) {
+        service.deactivate(id);
+    }
+
     @GetMapping("/{id}")
-    public EmployeeProfile getEmployee(@PathVariable Long id) {
+    public EmployeeProfileDto getById(@PathVariable Long id) {
         return service.getById(id);
     }
 
-    
     @GetMapping("/team/{teamName}")
-    public List<EmployeeProfile> getEmployeesByTeam(@PathVariable String teamName) {
+    public List<EmployeeProfileDto> getByTeam(@PathVariable String teamName) {
         return service.getByTeam(teamName);
+    }
+
+    @GetMapping
+    public List<EmployeeProfileDto> getAll() {
+        return service.getAll();
     }
 }
