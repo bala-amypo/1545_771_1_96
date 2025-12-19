@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo1.dto.LeaveRequestDto;
-import com.example.demo1.service.*;
+import com.example.demo.dto.LeaveRequestDto;
+import com.example.demo.service.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
