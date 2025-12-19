@@ -51,7 +51,7 @@ public class EmployeeProfile {
 
    
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    private Set<com.example.demo1.model.LeaveRequest> leaveRequests = new HashSet<>();
+    private Set<com.example.demo.model.LeaveRequest> leaveRequests = new HashSet<>();
 
     
 
