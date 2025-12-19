@@ -1,17 +1,11 @@
-package com.example.demo.repository;
+package com.example.demo1.repository;
 
-import com.example.demo.model.EmployeeProfile;
-
+import com.example.demo1.model.EmployeeProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface EmployeeProfileRepository extends JpaRepository<EmployeeProfile, Long> {
 
     List<EmployeeProfile> findByTeamNameAndActiveTrue(String teamName);
-
-    Optional<EmployeeProfile> findByEmployeeId(String employeeId);
-
-    Optional<EmployeeProfile> findByEmail(String email);
 }

@@ -1,15 +1,17 @@
 package com.example.demo.model;
+
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+
 @Entity
 @Table(
-    name = "employee_profile",
-    uniqueConstraints = {
-        @UniqueConstraint(columnNames = "employeeId"),
-        @UniqueConstraint(columnNames = "email")
-    }
+        name = "employee_profiles",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "employeeId"),
+                @UniqueConstraint(columnNames = "email")
+        }
 )
 public class EmployeeProfile {
 
@@ -18,7 +20,7 @@ public class EmployeeProfile {
     private Long id;
 
     @Column(nullable = false)
-    private String employeeId;
+    private String employeeId;  // Business identifier
 
     @Column(nullable = false)
     private String fullName;
@@ -38,101 +40,108 @@ public class EmployeeProfile {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    
     @ManyToMany
     @JoinTable(
-        name = "employee_colleagues",
-        joinColumns = @JoinColumn(name = "employee_id"),
-        inverseJoinColumns = @JoinColumn(name = "colleague_id")
+            name = "employee_colleagues",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "colleague_id")
     )
     private Set<EmployeeProfile> colleagues = new HashSet<>();
 
-    @PrePersist
-    public void onCreate() {
+   
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private Set<com.example.demo1.model.LeaveRequest> leaveRequests = new HashSet<>();
+
+    
+
+    public EmployeeProfile() {
         this.createdAt = LocalDateTime.now();
-        if (this.active == null) {
-            this.active = true;
-        }
     }
 
-   public  EmployeeProfile() {
-   
-   }
+    public EmployeeProfile(String employeeId, String fullName, String email,
+                           String teamName, String role) {
+        this.employeeId = employeeId;
+        this.fullName = fullName;
+        this.email = email;
+        this.teamName = teamName;
+        this.role = role;
+        this.active = true;
+        this.createdAt = LocalDateTime.now();
+    }
 
-   public EmployeeProfile(String employeeId, String fullName, String email, String teamName, String role, Boolean active,
-        LocalDateTime createdAt) {
-    this.employeeId = employeeId;
-    this.fullName = fullName;
-    this.email = email;
-    this.teamName = teamName;
-    this.role = role;
-    this.active = active;
-    this.createdAt = createdAt;
-   }
+    
+  
 
-   public Long getId() {
-    return id;
-   }
+    public Long getId() {
+        return id;
+    }
 
-   public void setId(Long id) {
-    this.id = id;
-   }
+    public String getEmployeeId() {
+        return employeeId;
+    }
 
-   public String getEmployeeId() {
-    return employeeId;
-   }
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
+    }
 
-   public void setEmployeeId(String employeeId) {
-    this.employeeId = employeeId;
-   }
+    public String getFullName() {
+        return fullName;
+    }
 
-   public String getFullName() {
-    return fullName;
-   }
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
-   public void setFullName(String fullName) {
-    this.fullName = fullName;
-   }
+    public String getEmail() {
+        return email;
+    }
 
-   public String getEmail() {
-    return email;
-   }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-   public void setEmail(String email) {
-    this.email = email;
-   }
+    public String getTeamName() {
+        return teamName;
+    }
 
-   public String getTeamName() {
-    return teamName;
-   }
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
 
-   public void setTeamName(String teamName) {
-    this.teamName = teamName;
-   }
+    public String getRole() {
+        return role;
+    }
 
-   public String getRole() {
-    return role;
-   }
+    public void setRole(String role) {
+        this.role = role;
+    }
 
-   public void setRole(String role) {
-    this.role = role;
-   }
+    public Boolean getActive() {
+        return active;
+    }
 
-   public Boolean getActive() {
-    return active;
-   }
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 
-   public void setActive(Boolean active) {
-    this.active = active;
-   }
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 
-   public LocalDateTime getCreatedAt() {
-    return createdAt;
-   }
+    public Set<EmployeeProfile> getColleagues() {
+        return colleagues;
+    }
 
-   public void setCreatedAt(LocalDateTime createdAt) {
-    this.createdAt = createdAt;
-   } 
-   
-      
+    public void setColleagues(Set<EmployeeProfile> colleagues) {
+        this.colleagues = colleagues;
+    }
+
+    public Set<LeaveRequest> getLeaveRequests() {
+        return leaveRequests;
+    }
+
+    public void setLeaveRequests(Set<LeaveRequest> leaveRequests) {
+        this.leaveRequests = leaveRequests;
+    }
 }
-
