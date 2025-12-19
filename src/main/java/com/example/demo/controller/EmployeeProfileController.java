@@ -18,13 +18,12 @@ public class EmployeeProfileController {
         this.service = service;
     }
 
-    // POST /api/employees
     @PostMapping
     public EmployeeProfile createEmployee(@RequestBody EmployeeProfile employeeProfile) {
         return service.create(employeeProfile);
     }
 
-    // PUT /api/employees/{id}
+   
     @PutMapping("/{id}")
     public EmployeeProfile updateEmployee(
             @PathVariable Long id,
@@ -32,13 +31,13 @@ public class EmployeeProfileController {
         return service.update(id, employeeProfile);
     }
 
-    // GET /api/employees/{id}
+   
     @GetMapping("/{id}")
     public EmployeeProfile getEmployee(@PathVariable Long id) {
         return service.getById(id);
     }
 
-    // GET /api/employees/team/{teamName}
+    
     @GetMapping("/team/{teamName}")
     public List<EmployeeProfile> getEmployeesByTeam(@PathVariable String teamName) {
         return service.getByTeam(teamName);
