@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo1.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
@@ -17,14 +17,15 @@ public class LeaveRequest {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    private String type;  
-    private String status; 
+    private String type;   // ANNUAL, SICK, etc.
+    private String status; // PENDING, APPROVED, REJECTED
 
     private String reason;
 
     public LeaveRequest() {}
 
-    public LeaveRequest(EmployeeProfile employee, LocalDate startDate, LocalDate endDate, String type, String status, String reason) {
+    public LeaveRequest(EmployeeProfile employee, LocalDate startDate,
+                        LocalDate endDate, String type, String status, String reason) {
         this.employee = employee;
         this.startDate = startDate;
         this.endDate = endDate;
