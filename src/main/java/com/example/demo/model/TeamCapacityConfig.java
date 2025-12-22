@@ -10,7 +10,7 @@ import jakarta.persistence.*;
                 @UniqueConstraint(columnNames = "teamName")
         }
 )
-public class TeamCapacityRule {
+public class TeamCapacityConfig {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
