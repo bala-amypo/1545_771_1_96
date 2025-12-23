@@ -1,13 +1,13 @@
 
-package com.example.demo.service;
+// package com.example.demo.service;
 
-import com.example.demo.dto.AuthRequest;
-import com.example.demo.dto.AuthResponse;
-import com.example.demo.model.UserAccount;
+// import com.example.demo.dto.AuthRequest;
+// import com.example.demo.dto.AuthResponse;
+// import com.example.demo.model.UserAccount;
 
-public interface AuthService {
+// public interface AuthService {
 
-    UserAccount register(UserAccount userAccount);
+//     UserAccount register(UserAccount userAccount);
 
-    AuthResponse authenticate(AuthRequest request);
-}
+//     AuthResponse authenticate(AuthRequest request);
+// }

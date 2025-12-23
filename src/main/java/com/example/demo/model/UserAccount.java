@@ -1,88 +1,88 @@
 
-package com.example.demo.model;
+// package com.example.demo.model;
 
-import jakarta.persistence.*;
+// import jakarta.persistence.*;
 
-@Entity
-@Table(
-        name = "user_accounts",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "email")
-        }
-)
-public class UserAccount {
+// @Entity
+// @Table(
+//         name = "user_accounts",
+//         uniqueConstraints = {
+//                 @UniqueConstraint(columnNames = "email")
+//         }
+// )
+// public class UserAccount {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;
 
-    @Column(nullable = false)
-    private String username;
+//     @Column(nullable = false)
+//     private String username;
 
-    @Column(nullable = false)
-    private String email;
+//     @Column(nullable = false)
+//     private String email;
 
-    @Column(nullable = false)
-    private String password; // BCrypt hashed
+//     @Column(nullable = false)
+//     private String password; // BCrypt hashed
 
-    @Column(nullable = false)
-    private String role;
+//     @Column(nullable = false)
+//     private String role;
 
-    @OneToOne
-    @JoinColumn(name = "employee_profile_id")
-    private EmployeeProfile employeeProfile;
+//     @OneToOne
+//     @JoinColumn(name = "employee_profile_id")
+//     private EmployeeProfile employeeProfile;
 
-    public UserAccount() {
-    }
+//     public UserAccount() {
+//     }
 
-    public UserAccount(String username, String email, String password, String role) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-    }
+//     public UserAccount(String username, String email, String password, String role) {
+//         this.username = username;
+//         this.email = email;
+//         this.password = password;
+//         this.role = role;
+//     }
 
-    public Long getId() {
-        return id;
-    }
+//     public Long getId() {
+//         return id;
+//     }
 
-    public String getUsername() {
-        return username;
-    }
+//     public String getUsername() {
+//         return username;
+//     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+//     public void setUsername(String username) {
+//         this.username = username;
+//     }
 
-    public String getEmail() {
-        return email;
-    }
+//     public String getEmail() {
+//         return email;
+//     }
     
-    public void setEmail(String email) {
-        this.email = email;
-    }
+//     public void setEmail(String email) {
+//         this.email = email;
+//     }
 
-    public String getPassword() {
-        return password;
-    }
+//     public String getPassword() {
+//         return password;
+//     }
     
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//     public void setPassword(String password) {
+//         this.password = password;
+//     }
 
-    public String getRole() {
-        return role;
-    }
+//     public String getRole() {
+//         return role;
+//     }
     
-    public void setRole(String role) {
-        this.role = role;
-    }
+//     public void setRole(String role) {
+//         this.role = role;
+//     }
 
-    public EmployeeProfile getEmployeeProfile() {
-        return employeeProfile;
-    }
+//     public EmployeeProfile getEmployeeProfile() {
+//         return employeeProfile;
+//     }
 
-    public void setEmployeeProfile(EmployeeProfile employeeProfile) {
-        this.employeeProfile = employeeProfile;
-    }
-}
+//     public void setEmployeeProfile(EmployeeProfile employeeProfile) {
+//         this.employeeProfile = employeeProfile;
+//     }
+// }
