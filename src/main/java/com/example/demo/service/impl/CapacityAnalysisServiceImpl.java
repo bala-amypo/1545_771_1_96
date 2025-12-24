@@ -1,4 +1,3 @@
-
 package com.example.demo.service.impl;
 
 import com.example.demo.dto.CapacityAnalysisResultDto;
@@ -11,7 +10,6 @@ import com.example.demo.repository.EmployeeProfileRepository;
 import com.example.demo.repository.LeaveRequestRepository;
 import com.example.demo.repository.TeamCapacityConfigRepository;
 import com.example.demo.service.CapacityAnalysisService;
-import com.example.demo.util.DateRangeUtil;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -47,11 +45,18 @@ public class CapacityAnalysisServiceImpl implements CapacityAnalysisService {
     ) {
 
         if (!DateRangeUtil.daysBetween(start, end)) {
-            throw new BadRequestException("Start date is invalid or future");
+            throw new BadRequestException("Start date or future");
         }
 
+     
         TeamCapacityConfig config = capacityRepo.findByTeamName(teamName)
-                .orElseThrow(() -> new ResourceNotFoundException("Capacity config not found"));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Capacity config not found"));
+
+ 
+        if (config.getTotalHeadcount() == null || config.getTotalHeadcount() <= 0) {
+            throw new BadRequestException("Invalid total headcount");
+        }
 
         int totalHeadcount = config.getTotalHeadcount();
         int minCapacityPercent = config.getMinCapacityPercent();
@@ -59,30 +64,29 @@ public class CapacityAnalysisServiceImpl implements CapacityAnalysisService {
         List<?> activeEmployees =
                 employeeRepo.findByTeamNameAndActiveTrue(teamName);
 
-        Map<LocalDate, Double> capacityMap = new HashMap<>();
+        Map<LocalDate, Double> capacityByDate = new HashMap<>();
         boolean risky = false;
 
         LocalDate current = start;
+
         while (!current.isAfter(end)) {
 
             int onLeaveCount =
-                    leaveRepo.findApprovedOverlappingForTeam(teamName, current, current).size();
+                    leaveRepo.findApprovedOverlappingForTeam(
+                            teamName, current, current).size();
 
             double availablePercent =
                     ((double) (totalHeadcount - onLeaveCount) / totalHeadcount) * 100;
 
-            capacityMap.put(current, availablePercent);
+            capacityByDate.put(current, availablePercent);
 
             if (availablePercent < minCapacityPercent) {
                 risky = true;
 
-                String severity =
-                        availablePercent < minCapacityPercent / 2 ? "HIGH" : "MEDIUM";
-
                 CapacityAlert alert = new CapacityAlert(
                         teamName,
                         current,
-                        severity,
+                        "LOW",
                         "Team capacity below threshold"
                 );
 
@@ -94,8 +98,21 @@ public class CapacityAnalysisServiceImpl implements CapacityAnalysisService {
 
         CapacityAnalysisResultDto result = new CapacityAnalysisResultDto();
         result.setRisky(risky);
-        result.setCapacityByDate(capacityMap);
+        result.setCapacityByDate(capacityByDate);
 
         return result;
+    }
+
+    static class DateRangeUtil {
+
+        private DateRangeUtil() {
+        }
+
+        public static boolean daysBetween(LocalDate start, LocalDate end) {
+            if (start == null || end == null) {
+                return false;
+            }
+            return !start.isAfter(end);
+        }
     }
 }
