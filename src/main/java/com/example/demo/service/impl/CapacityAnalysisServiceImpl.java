@@ -96,11 +96,8 @@ public class CapacityAnalysisServiceImpl implements CapacityAnalysisService {
             current = current.plusDays(1);
         }
 
-        CapacityAnalysisResultDto result = new CapacityAnalysisResultDto();
-        result.setRisky(risky);
-        result.setCapacityByDate(capacityByDate);
+       return new CapacityAnalysisResultDto(risky, capacityByDate);
 
-        return result;
     }
 
     static class DateRangeUtil {
