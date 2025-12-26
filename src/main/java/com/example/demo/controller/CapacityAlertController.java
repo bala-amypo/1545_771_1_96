@@ -83,4 +83,6 @@ public class CapacityAlertController {
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end) {
         return alertRepo.findByTeamNameAndDateBetween(teamName, start, end);
     }
+    import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+@SecurityRequirement(name = "Bearer Authentication")
 }

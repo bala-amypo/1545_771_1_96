@@ -126,4 +126,6 @@ public class LeaveRequestController {
     ) {
         return ResponseEntity.ok(service.getByEmployee(employeeId));
     }
+    import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+@SecurityRequirement(name = "Bearer Authentication")
 }

@@ -82,4 +82,6 @@ public class EmployeeProfileController {
     public ResponseEntity<List<EmployeeProfileDto>> getByTeam(@PathVariable String teamName) {
         return ResponseEntity.ok(service.getByTeam(teamName));
     }
+    import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+@SecurityRequirement(name = "Bearer Authentication")
 }
