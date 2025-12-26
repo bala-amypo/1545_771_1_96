@@ -127,5 +127,5 @@ public class LeaveRequestController {
         return ResponseEntity.ok(service.getByEmployee(employeeId));
     }
    
-@SecurityRequirement(name = "Bearer Authentication")
+    @SecurityRequirement(name = "Bearer Authentication")
 }

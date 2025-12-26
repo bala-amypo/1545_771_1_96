@@ -84,5 +84,5 @@ public class EmployeeProfileController {
         return ResponseEntity.ok(service.getByTeam(teamName));
     }
     
-@SecurityRequirement(name = "Bearer Authentication")
+     @SecurityRequirement(name = "Bearer Authentication")
 }
