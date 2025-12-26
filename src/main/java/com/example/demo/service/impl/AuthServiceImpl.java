@@ -109,4 +109,3 @@ public class AuthServiceImpl implements AuthService {
         return new AuthResponse(token, newUser.getId(), newUser.getEmail(), newUser.getRole());
     }
 }
-}
