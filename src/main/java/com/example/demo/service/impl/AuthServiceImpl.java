@@ -86,4 +86,27 @@ public class AuthServiceImpl implements AuthService {
         String token = tokenProvider.generateToken(user);
         return new AuthResponse(token, user.getId(), user.getEmail(), user.getRole());
     }
+       @Override
+    public AuthResponse register(AuthRequest request) {
+        // Check if the email already exists
+        if (userRepo.existsByEmail(request.getEmail())) {
+            throw new BadRequestException("Email is already in use");
+        }
+
+        // Create new UserAccount instance
+        UserAccount newUser = new UserAccount();
+        newUser.setEmail(request.getEmail());
+        newUser.setPassword(passwordEncoder.encode(request.getPassword()));  // Encode the password
+        newUser.setRole("USER");  // Default role (you can change this as needed)
+
+        // Save the new user to the database
+        userRepo.save(newUser);
+
+        // Generate a JWT token for the new user
+        String token = tokenProvider.generateToken(newUser);
+
+        // Return the AuthResponse
+        return new AuthResponse(token, newUser.getId(), newUser.getEmail(), newUser.getRole());
+    }
+}
 }
