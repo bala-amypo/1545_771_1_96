@@ -60,6 +60,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/capacity-alerts")
+@SecurityRequirement(name = "Bearer Authentication")
 public class CapacityAlertController {
     private final CapacityAnalysisService analysisService;
     private final CapacityAlertRepository alertRepo;
@@ -85,5 +86,5 @@ public class CapacityAlertController {
         return alertRepo.findByTeamNameAndDateBetween(teamName, start, end);
     }
     
-@SecurityRequirement(name = "Bearer Authentication")
+
 }

@@ -44,6 +44,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
 @RequestMapping("/api/capacity-rules")
+@SecurityRequirement(name = "Bearer Authentication")
 public class TeamCapacityRuleController {
     private final TeamCapacityRuleService service;
 
@@ -60,5 +61,5 @@ public class TeamCapacityRuleController {
     public ResponseEntity<TeamCapacityConfig> getByTeam(@PathVariable String teamName) {
         return ResponseEntity.ok(service.getRuleByTeam(teamName));
     }
-@SecurityRequirement(name = "Bearer Authentication")
+
 }

@@ -62,6 +62,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/employees")
+@SecurityRequirement(name = "Bearer Authentication")
 public class EmployeeProfileController {
     private final EmployeeProfileService service;
 
@@ -84,5 +85,5 @@ public class EmployeeProfileController {
         return ResponseEntity.ok(service.getByTeam(teamName));
     }
     
-     @SecurityRequirement(name = "Bearer Authentication")
+    
 }
