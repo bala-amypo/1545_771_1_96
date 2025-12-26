@@ -88,7 +88,7 @@ import com.example.demo.dto.LeaveRequestDto;
 import com.example.demo.service.LeaveRequestService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import java.util.List;
 
 @RestController
@@ -126,6 +126,6 @@ public class LeaveRequestController {
     ) {
         return ResponseEntity.ok(service.getByEmployee(employeeId));
     }
-    import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+   
 @SecurityRequirement(name = "Bearer Authentication")
 }

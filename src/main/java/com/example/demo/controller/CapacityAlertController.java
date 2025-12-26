@@ -54,6 +54,7 @@ import com.example.demo.repository.CapacityAlertRepository;
 import com.example.demo.service.CapacityAnalysisService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -83,6 +84,6 @@ public class CapacityAlertController {
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end) {
         return alertRepo.findByTeamNameAndDateBetween(teamName, start, end);
     }
-    import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+    
 @SecurityRequirement(name = "Bearer Authentication")
 }

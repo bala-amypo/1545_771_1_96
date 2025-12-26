@@ -40,6 +40,7 @@ import com.example.demo.model.TeamCapacityConfig;
 import com.example.demo.service.TeamCapacityRuleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
 @RequestMapping("/api/capacity-rules")
@@ -59,6 +60,5 @@ public class TeamCapacityRuleController {
     public ResponseEntity<TeamCapacityConfig> getByTeam(@PathVariable String teamName) {
         return ResponseEntity.ok(service.getRuleByTeam(teamName));
     }
-    import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 @SecurityRequirement(name = "Bearer Authentication")
 }

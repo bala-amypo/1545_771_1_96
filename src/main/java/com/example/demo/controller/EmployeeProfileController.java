@@ -57,6 +57,7 @@ import com.example.demo.dto.EmployeeProfileDto;
 import com.example.demo.service.EmployeeProfileService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import java.util.List;
 
 @RestController
@@ -82,6 +83,6 @@ public class EmployeeProfileController {
     public ResponseEntity<List<EmployeeProfileDto>> getByTeam(@PathVariable String teamName) {
         return ResponseEntity.ok(service.getByTeam(teamName));
     }
-    import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+    
 @SecurityRequirement(name = "Bearer Authentication")
 }
