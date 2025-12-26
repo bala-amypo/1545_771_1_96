@@ -17,4 +17,5 @@ import com.example.demo.dto.AuthResponse;
 
 public interface AuthService {
     AuthResponse authenticate(AuthRequest request);
+        AuthResponse register(AuthRequest request); 
 }
