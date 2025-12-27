@@ -93,7 +93,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/leaves")
-@SecurityRequirement(name = "Bearer Authentication")
+@SecurityRequirement(name = "bearerAuth")
 public class LeaveRequestController {
 
     private final LeaveRequestService service;

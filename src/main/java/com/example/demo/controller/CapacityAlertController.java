@@ -60,7 +60,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/capacity-alerts")
-@SecurityRequirement(name = "Bearer Authentication")
+@SecurityRequirement(name = "bearerAuth")
 public class CapacityAlertController {
     private final CapacityAnalysisService analysisService;
     private final CapacityAlertRepository alertRepo;

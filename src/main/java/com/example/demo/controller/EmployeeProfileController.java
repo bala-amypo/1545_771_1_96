@@ -62,7 +62,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/employees")
-@SecurityRequirement(name = "Bearer Authentication")
+@SecurityRequirement(name = "bearerAuth")
 public class EmployeeProfileController {
     private final EmployeeProfileService service;
 
