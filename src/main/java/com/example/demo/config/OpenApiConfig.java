@@ -56,7 +56,7 @@ public OpenAPI customOpenAPI() {
                     .title("JWT Demo API")
                     .version("1.0")
                     .description("Simple JWT Demo Project for Students"))
-            .servers(List.of(server))
+            .serve  rs(List.of(server))
             // ✅ THIS LINE IS THE FIX
             .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
             .components(new Components()
