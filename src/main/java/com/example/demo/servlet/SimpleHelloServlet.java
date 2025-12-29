@@ -14,7 +14,7 @@ public class SimpleHelloServlet extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        // Requirement: Handle both non-null and null config gracefully
+       
         if (config != null) {
             super.init(config);
         }
